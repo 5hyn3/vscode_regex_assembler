@@ -1,0 +1,75 @@
+{
+    "name": "regexassembler",
+    "displayName": "RegexAssembler",
+    "description": "Add an option to automatically generate regular expressions in the context menu.",
+    "version": "0.0.1",
+    "publisher": "shyne",
+    "engines": {
+        "vscode": "^1.17.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.AddText",
+        "onCommand:extension.AddSingleLineTexts",
+        "onCommand:extension.AssembleRegex",
+        "onCommand:extension.ClearText"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.AddText",
+                "title": "Add Text"
+            },
+            {
+                "command": "extension.AddSingleLineTexts",
+                "title": "Add Single Line Texts"
+            },
+            {
+                "command": "extension.AssembleRegex",
+                "title": "Assemble Regex"
+            },
+            {
+                "command": "extension.ClearText",
+                "title": "Clear Text"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "editorHasSelection",
+                    "command": "extension.AddText",
+                    "group": "RegexAssembler@1"
+                },
+                {
+                    "when": "editorHasSelection",
+                    "command": "extension.AddSingleLineTexts",
+                    "group": "RegexAssembler@2"
+                },
+                {
+                    "command": "extension.AssembleRegex",
+                    "group": "RegexAssembler@3"
+                },
+                {
+                    "command": "extension.ClearText",
+                    "group": "RegexAssembler@4"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.5.3",
+        "vscode": "^1.1.5",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
